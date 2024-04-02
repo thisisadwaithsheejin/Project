@@ -22,7 +22,8 @@ export class AdminController {
         await this.adminLogService.admincreateLog({
             method:'GET',
             path:'/admin',
-            description:'Get all is called'
+            date: new Date(),
+            description:'Get all is called',
         })
         return admins;
     }
@@ -38,6 +39,7 @@ export class AdminController {
         await this.adminLogService.admincreateLog({
             method:'POST',
             path:'/admin',
+            date: new Date(),
             description:'POST admin is called'
         })
         return createdAdmin;
@@ -54,6 +56,7 @@ export class AdminController {
         await this.adminLogService.admincreateLog({
             method:'GET',
             path : '/admin/'+id,
+            date: new Date(),
             description : `GET request for updating admin by ${id}`
         })
         return admin;
@@ -71,6 +74,7 @@ export class AdminController {
         await this.adminLogService.admincreateLog({
             method:'PUT',
             path : '/admin/'+id,
+            date: new Date(),
             description : `PUT request for ${id}`
         })
         return updatedAdmin;
@@ -87,6 +91,7 @@ export class AdminController {
         await this.adminLogService.admincreateLog({
             method:'DELETE',
             path : '/admin/'+id,
+            date: new Date(),
             description : `DELETE by ID ${id}`
         })
         return deletedAdmin;
