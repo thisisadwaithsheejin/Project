@@ -3,11 +3,13 @@ import { AdminService } from './admin.service';
 import { Admin } from './schemas/admin.schema';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
+import { AdminLogService } from './admin.log/admin.log.service';
 
 @Controller('admin')
 export class AdminController {
     constructor(
         private adminService: AdminService,
+        private adminLogService : AdminLogService
         ) {}
     /**
      * Retirves all admins . 
@@ -17,6 +19,11 @@ export class AdminController {
     async getAllAdmin(): Promise<Admin[]> {
         //Fetch all admins 
         const admins = await this.adminService.findAll();
+        await this.adminLogService.admincreateLog({
+            method:'GET',
+            path:'/admin',
+            description:'Get all is called'
+        })
         return admins;
     }
     /**
@@ -27,7 +34,12 @@ export class AdminController {
     @Post()
     async createAdmin(@Body() admin: CreateAdminDto): Promise<Admin> {
         //Create a new admin
-        const createdAdmin=await this.adminService.create(admin)
+        const createdAdmin=await this.adminService.create(admin);
+        await this.adminLogService.admincreateLog({
+            method:'POST',
+            path:'/admin',
+            description:'POST admin is called'
+        })
         return createdAdmin;
     }
     /**
@@ -39,6 +51,11 @@ export class AdminController {
     async getAdmin(@Param('id') id: string): Promise<Admin> {
         //Find admin by ID
         const admin = await this.adminService.findById(id);
+        await this.adminLogService.admincreateLog({
+            method:'GET',
+            path : '/admin/'+id,
+            description : `GET request for updating admin by ${id}`
+        })
         return admin;
     }
     /**
@@ -51,6 +68,11 @@ export class AdminController {
     async updateAdmin(@Param('id') id: string, @Body() admin: UpdateAdminDto): Promise<Admin> {
         //Update admin by ID
         const updatedAdmin = await this.adminService.updateById(id, admin);
+        await this.adminLogService.admincreateLog({
+            method:'PUT',
+            path : '/admin/'+id,
+            description : `PUT request for ${id}`
+        })
         return updatedAdmin;
     }
     /**
@@ -62,6 +84,11 @@ export class AdminController {
     async deleteAdmin(@Param('id') id: string): Promise<Admin> {
         //Delete admin by ID
         const deletedAdmin = await this.adminService.deleteById(id);
+        await this.adminLogService.admincreateLog({
+            method:'DELETE',
+            path : '/admin/'+id,
+            description : `DELETE by ID ${id}`
+        })
         return deletedAdmin;
     }    
 }

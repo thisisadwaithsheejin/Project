@@ -19,5 +19,8 @@ export class AdminLog extends Document{
     //Date and time when the log entry was created 
     @Prop({default:Date.now})
     date:Date;
+
+    @Prop()
+    description:string;
 }
 export const AdminLogSchema = SchemaFactory.createForClass(AdminLog);
