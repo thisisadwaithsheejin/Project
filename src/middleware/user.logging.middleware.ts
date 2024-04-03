@@ -8,6 +8,7 @@ export class UserLoggingMiddleware implements NestMiddleware{
     async use(req:Request,res:Response,next:NextFunction){
         // Extracting method, originalUrl, and params from the request object
         const {method, originalUrl, params}=req;
+        const description = `${method} request for ${originalUrl}`;
         // Constructing log data object
         const UserlogData = {
             // HTTP request method
@@ -15,7 +16,8 @@ export class UserLoggingMiddleware implements NestMiddleware{
             // Full path of the request
             path:originalUrl,
             // ID parameter from the request
-            id:params.id
+            id:params.id,
+            description,
         };
         await this.userLogService.UsercreateLog(UserlogData);
         next();

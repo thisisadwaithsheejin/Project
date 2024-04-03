@@ -18,5 +18,9 @@ export class UserLog extends Document{
     @Prop({type:Date, default:Date.now})
     // Date and time when the log entry was created
     date:Date;
+
+    @Prop()
+    //description of the method
+    description:string;
 }
 export const UserLogSchema = SchemaFactory.createForClass(UserLog);

@@ -19,12 +19,6 @@ export class AdminController {
     async getAllAdmin(): Promise<Admin[]> {
         //Fetch all admins 
         const admins = await this.adminService.findAll();
-        await this.adminLogService.admincreateLog({
-            method:'GET',
-            path:'/admin',
-            date: new Date(),
-            description:'Get all is called',
-        })
         return admins;
     }
     /**
@@ -36,12 +30,6 @@ export class AdminController {
     async createAdmin(@Body() admin: CreateAdminDto): Promise<Admin> {
         //Create a new admin
         const createdAdmin=await this.adminService.create(admin);
-        await this.adminLogService.admincreateLog({
-            method:'POST',
-            path:'/admin',
-            date: new Date(),
-            description:'POST admin is called'
-        })
         return createdAdmin;
     }
     /**
@@ -53,12 +41,6 @@ export class AdminController {
     async getAdmin(@Param('id') id: string): Promise<Admin> {
         //Find admin by ID
         const admin = await this.adminService.findById(id);
-        await this.adminLogService.admincreateLog({
-            method:'GET',
-            path : '/admin/'+id,
-            date: new Date(),
-            description : `GET request for updating admin by ${id}`
-        })
         return admin;
     }
     /**
@@ -71,12 +53,6 @@ export class AdminController {
     async updateAdmin(@Param('id') id: string, @Body() admin: UpdateAdminDto): Promise<Admin> {
         //Update admin by ID
         const updatedAdmin = await this.adminService.updateById(id, admin);
-        await this.adminLogService.admincreateLog({
-            method:'PUT',
-            path : '/admin/'+id,
-            date: new Date(),
-            description : `PUT request for ${id}`
-        })
         return updatedAdmin;
     }
     /**
@@ -88,12 +64,6 @@ export class AdminController {
     async deleteAdmin(@Param('id') id: string): Promise<Admin> {
         //Delete admin by ID
         const deletedAdmin = await this.adminService.deleteById(id);
-        await this.adminLogService.admincreateLog({
-            method:'DELETE',
-            path : '/admin/'+id,
-            date: new Date(),
-            description : `DELETE by ID ${id}`
-        })
         return deletedAdmin;
     }    
 }

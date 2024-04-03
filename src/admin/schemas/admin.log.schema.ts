@@ -17,7 +17,7 @@ export class AdminLog extends Document{
     method:string;
 
     //Date and time when the log entry was created 
-    @Prop({default:Date.now})
+    @Prop({type:Date,default:Date.now})
     date:Date;
 
     @Prop()

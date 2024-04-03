@@ -15,7 +15,5 @@ export class UserLogService {
     // create a new user log entry
     const createdLog = new this.userLogModel(data);
     return createdLog.save();
-    
     }
-
 }

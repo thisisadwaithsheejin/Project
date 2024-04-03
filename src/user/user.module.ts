@@ -5,7 +5,7 @@ import { UserSchema } from './schemas/user.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserLogService } from './user.log/user.log.service';
 import { UserLog, UserLogSchema } from './schemas/user.log.schema';
-import { UserLoggingMiddleware } from 'src/middleware/user.logging.schema';
+import { UserLoggingMiddleware } from 'src/middleware/user.logging.middleware';
 
 @Module({
   imports:[MongooseModule.forFeature([

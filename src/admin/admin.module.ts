@@ -18,6 +18,7 @@ import { AdminLoggingMiddleware } from 'src/middleware/admin.logging.middleware'
 })
 export class AdminModule implements NestModule{
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AdminLoggingMiddleware).forRoutes('/admin')
+    consumer.apply(AdminLoggingMiddleware)
+    .forRoutes('/admin')
   }
 }
