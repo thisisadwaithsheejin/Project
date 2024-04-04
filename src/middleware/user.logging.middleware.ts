@@ -11,6 +11,7 @@ export class UserLoggingMiddleware implements NestMiddleware{
         let description='';
         const idMatch = originalUrl.match(/\user\/([^/]+)/)
         const id=idMatch?idMatch[1]:undefined;
+        //switch case to determine the description based on the HTTP method
         switch(method){
             case 'GET':
                 if(originalUrl==='/user'){
@@ -39,6 +40,7 @@ export class UserLoggingMiddleware implements NestMiddleware{
             path:originalUrl,
             // ID parameter from the request
             id,
+            //Description for the method
             description,
         };
         await this.userLogService.UsercreateLog(UserlogData);
