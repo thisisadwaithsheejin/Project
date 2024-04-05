@@ -35,7 +35,12 @@ export class AdminProductsService {
      * @returns Promise<Product[]> 
      */
     async searchProducts(query: any): Promise<Product[]> {
-        const products = await this.productModel.find(query);
+        const {searchTerm} = query;
+        if(!searchTerm){
+            return await this.productModel.find();
+        }
+        const regex = new RegExp(searchTerm,'i')
+        const products = await this.productModel.find({name:{$regex:regex}});
         return products;
     }
      

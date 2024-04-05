@@ -7,6 +7,10 @@ import { Order } from '../schemas/order.schema';
 export class UserOrderController {
     constructor(private readonly userOrderService:UserOrderService){}
 
+    /**
+     * For getting all orders
+     * @returns Order[]
+     */
     @Get()
     async getAllOrders(): Promise<Order[]> {
         //Fetch all orders 
@@ -22,5 +26,16 @@ export class UserOrderController {
     async createOrder(@Body()createOrderDto:CreateOrderDto){
         // Call to the service to create the order
         return this.userOrderService.createOrder(createOrderDto)
+    }
+
+    /**
+     * Call a particular order
+     * @param id 
+     * @returns Order
+     */
+    @Get(':id')
+    async getOrder(@Param('id') id: string): Promise<Order> {
+        const order = await this.userOrderService.findById(id);
+        return order;
     }
 }

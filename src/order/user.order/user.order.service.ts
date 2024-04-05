@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Order } from '../schemas/order.schema';
 import { Model } from 'mongoose';
@@ -8,11 +8,24 @@ import { CreateOrderDto } from '../dto/create-order.dto';
 export class UserOrderService {
     constructor(@InjectModel(Order.name)private orderModel:Model<Order>){}
 
-    async findAll():Promise<Order[]>
-    {
-        //Get all order
+    /**
+     * Findall orders
+     * @returns Order[]
+     */
+    async findAll():Promise<Order[]>{
         const orders = await this.orderModel.find()
         return orders;
+    }
+
+    /**
+     * Find order by Id
+     * @param id 
+     * @returns Order
+     */
+    async findById(id:string):Promise<Order>{
+        //Find order by ID
+        const cid = await this.orderModel.findById(id)   
+        return cid;
     }
 
     /**
