@@ -9,21 +9,23 @@ export class AuthController {
 
     /**
      * Handles user signup
-     * @param signupDto 
+     * @param signupDto signupDto Data for user signup
      * @returns Promise<any>
      */
     @Post('signup')
     async signup(@Body() signupDto: SignupDto) {
+        //Delegate signup process to AuthService
         return this.authService.signup(signupDto);
     }
 
     /**
      * Handles user login
-     * @param loginDto 
+     * @param loginDto LoginDto Data for user login
      * @returns Promise<any>
      */
     @Post('login')
     async login(@Body() loginDto: LoginDto) {
+        //Delegate login process to AuthService
         return this.authService.login(loginDto);
     }
 }

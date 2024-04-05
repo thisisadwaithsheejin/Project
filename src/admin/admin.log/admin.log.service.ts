@@ -7,12 +7,14 @@ import { Model } from 'mongoose';
 export class AdminLogService {
     constructor(@InjectModel(AdminLog.name)private adminLogModel:Model<AdminLog>){}
     /**
-     * creates a new admin log entry
-     * @param data 
-     * @returns 
+     * Creates a new admin log entry
+     * @param data Partial<AdminLog> Data to create the log entry
+     * @returns Promise<AdminLog> Newly created admin log entry
      */
     async admincreateLog(data:Partial<AdminLog>):Promise<AdminLog>{
+        //Creating a new instance of AdminLog using the provided data
         const createdLog = new this.adminLogModel(data);
+        //saving the newly created log entry to the database
         return createdLog.save();
     }
 }

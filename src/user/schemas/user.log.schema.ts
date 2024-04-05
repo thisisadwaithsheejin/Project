@@ -23,4 +23,5 @@ export class UserLog extends Document{
     //description of the method
     description:string;
 }
+
 export const UserLogSchema = SchemaFactory.createForClass(UserLog);

@@ -16,8 +16,8 @@ export class AuthService {
 
   /**
    * Register a new user
-   * @param signupDto 
-   * @returns Promise<{message:string}>
+   * @param signupDto SignupDto Data for user signup
+   * @returns Promise<{message:string}> Success message
    */
   async signup(signupDto: SignupDto) {
     const { username, password } = signupDto;
@@ -36,8 +36,9 @@ export class AuthService {
 
   /**
    * Logs in an existing user
-   * @param loginDto 
-   * @returns Promise<{token:string}>
+   * @param loginDto LoginDto Data for user login 
+   * @returns Promise<{token:string}> JWT token for the user
+   * @throws UnauthorizedException if credentials are invalid
    */
   async login(loginDto: LoginDto) {
     const { username, password } = loginDto;
@@ -57,8 +58,8 @@ export class AuthService {
 
   /**
    * Generates JWT token for the user
-   * @param user AuthDocument
-   * @returns string
+   * @param user AuthDocument User document
+   * @returns string JWT token
    */
   private generateToken(user: AuthDocument) {
     const payload = { username: user.username, sub: user._id };

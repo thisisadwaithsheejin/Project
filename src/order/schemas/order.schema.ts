@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, SchemaTypes, Types } from "mongoose";
 import { Product } from "src/products/schemas/product.schema";
 
+//enum defining differnet order status
 export enum OrderStatus {
     SHIPPING = "shipping",
     PROCESSING = 'processing',
@@ -9,6 +10,7 @@ export enum OrderStatus {
     CANCELLED = 'cancelled'
 }
 
+//Define schema for Order document
 @Schema({
     timestamps: true,
 })
@@ -26,5 +28,5 @@ export class Order extends Document {
     @Prop({type:String,enum:OrderStatus,default:OrderStatus.PROCESSING})
     status:OrderStatus;
 }
-
+//Create Mongoose schema from Order class
 export const OrderSchema = SchemaFactory.createForClass(Order);

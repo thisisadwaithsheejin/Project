@@ -11,7 +11,7 @@ export class AdminService {
     ){}
     /**
      * Retrives all admins . 
-     * @returns Promise<Admin[]> 
+     * @returns Promise<Admin[]> All admins
      */
     async findAll(): Promise<Admin[]>{
         //Find all admins
@@ -20,8 +20,8 @@ export class AdminService {
     }
     /**
      * Creates a new admin
-     * @param admin Admin
-     * @returns Promise<Admin>
+     * @param admin Admin New admin object
+     * @returns Promise<Admin> Newly created admin
      */
     async create(admin:Admin): Promise<Admin>{
         //Create a new admin
@@ -30,7 +30,7 @@ export class AdminService {
     }
     /**
      * find an admin By ID
-     * @param id 
+     * @param id string Admin ID
      * @returns Promise<Admin>
      */
     async findById(id:string):Promise<Admin>{
@@ -44,21 +44,21 @@ export class AdminService {
     }
     /**
      *Updates an admin by ID . 
-     * @param id string 
-     * @param cid
+     * @param id string Admin ID
+     * @param admin Admin Updated admin object
      * @returns Promise<Admin>
      */
-    async updateById(id:string,cid:Admin):Promise<Admin>{
+    async updateById(id:string,admin:Admin):Promise<Admin>{
         //Update admin by ID
-        return await this.adminModel.findByIdAndUpdate(id,cid,{
+        return await this.adminModel.findByIdAndUpdate(id,admin,{
             new :true ,
             runValidators: true
         });
     }
     /**
      * Deletes an admin by ID.
-     * @param id string
-     * @returns Promise<Admin>
+     * @param id string Admin ID
+     * @returns Promise<Admin> Deleted admin
      */
     async deleteById(id:string):Promise<Admin>{
         //Delete admin by ID

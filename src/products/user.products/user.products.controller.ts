@@ -8,8 +8,8 @@ export class UserProductsController {
     constructor(private productService: UserProductsService) {}
 
     /**
-     * Get all products
-     * @returns all products
+     * Retrieves all products
+     * @returns Promise<Product[]> array of all products
      */
     @Get()
     async getAllProduct(): Promise<Product[]> {
@@ -18,12 +18,12 @@ export class UserProductsController {
 
     /**
      * Search for products based on various parameters
-     * @param category The category of products to search for
-     * @param minPrice The minPrice of products to search for
-     * @param maxPrice The maxPrice of products to search for
-     * @param name The name of products to search for
-     * @param minRating The minRating of products to search for
-     * @returns Matching products
+     * @param category category of products to search for
+     * @param minPrice minPrice of products to search for
+     * @param maxPrice maxPrice of products to search for
+     * @param name name of products to search for
+     * @param minRating minRating of products to search for
+     * @returns Promise<Product[]> An array of Matching products
      */
     @Get('search')
     async searchProducts(
@@ -38,9 +38,9 @@ export class UserProductsController {
     }
     
     /**
-     * Get a product by ID
-     * @param id the id of the product to retrieve
-     * @returns the product with specified ID
+     * retrieves a product by its ID
+     * @param id string the ID of the product to retrieve
+     * @returns Promise<Product> The requested product
      */
     @Get(':id')
     async getProduct(@Param('id') id: string): Promise<Product> {
@@ -49,9 +49,9 @@ export class UserProductsController {
 
     /**
      * Add a review to a product
-     * @param productId the id of the product to add a review to 
-     * @param review 
-     * @returns the updated product with the added review
+     * @param productId string the id of the product to add a review to 
+     * @param review Review The review data to add
+     * @returns Promise<Product> the updated product with the added review
      */
     @Post(':id/reviews')
     async addReview(

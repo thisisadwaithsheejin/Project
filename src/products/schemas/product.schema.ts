@@ -11,6 +11,7 @@ export enum Category{
 @Schema({
     timestamps:true,
 })
+
 export class Product{
 
     //product name 
@@ -48,5 +49,4 @@ export class Product{
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product)
-
 export { Review }; 

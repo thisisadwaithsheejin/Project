@@ -9,8 +9,8 @@ export class CartController {
 
     /**
      * Adds a new item to the cart 
-     * @param CreateCartItemDto 
-     * @returns 
+     * @param CreateCartItemDto CreateCartItemDto Data for creating a new cart item
+     * @returns Promise<any>
      */
     @Post()
     async addToCart(@Body() CreateCartItemDto:CreateCartItemDto){
@@ -19,8 +19,8 @@ export class CartController {
 
     /**
      * Removes an item from the cart 
-     * @param cartItemId 
-     * @returns 
+     * @param cartItemId string ID of the cart item to remove
+     * @returns Promise<any>
      */
     @Delete(':id')
     async removeFromCart(@Param('id')cartItemId:string){
@@ -28,10 +28,10 @@ export class CartController {
     }
 
     /**
-     * updates item 
-     * @param cartItemId 
-     * @param updateCartItemDto 
-     * @returns 
+     * updates a cart item 
+     * @param cartItemId string ID of the cart item to update
+     * @param updateCartItemDto UpdateCartItemDto Data for updating the cart item
+     * @returns Promise<any>
      */
     @Patch(':id')
     async updateCartItem(@Param('id') cartItemId:string ,@Body() updateCartItemDto:UpdateCartItemDto){

@@ -22,7 +22,7 @@ export class AdminProductsService {
     /**
      * Create a new product 
      * @param product 
-     * @returns 
+     * @returns Promise<Product>
      */
     async create(product:Product): Promise<Product>{
         const res = await this.productModel.create(product)
@@ -47,7 +47,7 @@ export class AdminProductsService {
     /**
      * Find a particular product by ID
      * @param id 
-     * @returns 
+     * @returns Promise<Product>
      */
     async findById(id:string):Promise<Product>{
         const cid = await this.productModel.findById(id)
@@ -57,7 +57,7 @@ export class AdminProductsService {
         }   
         return cid;
     }
- 
+
     /**
      * Update a product by ID
      * @param id 

@@ -9,13 +9,13 @@ export class AdminOrderService {
     
     /**
      * creates a new order 
-     * @param customerName 
-     * @param products 
-     * @param status 
-     * @returns newly created order 
+     * @param customerName string Customer name
+     * @param products Products string[] Array of product IDs
+     * @param status OrderStatus Status of the order
+     * @returns Promise<Order> newly created order 
      */
     async createOrder(customerName:string,products:string[],status: OrderStatus): Promise<Order> {
-        //convertt product IDs to ObjectIds
+        //convert product IDs to ObjectIds
         const productIds = products.map(productId=>Types.ObjectId.createFromHexString(productId))
         //create new order instance
         const createdOrder = new this.orderModel({ customerName , product:productIds , status });
@@ -25,7 +25,7 @@ export class AdminOrderService {
 
     /**
      * retrives all orders 
-     * @returns array of orders 
+     * @returns Promise<Order[]> Array of orders 
      */
     async getAllOrders(): Promise<Order[]> {
         //find all orders in the database 
@@ -33,10 +33,10 @@ export class AdminOrderService {
     }
 
     /**
-     * UPdates the status of an order 
-     * @param orderId 
-     * @param status 
-     * @returns the updated order , or null if the order was not found 
+     * Updates the status of an order 
+     * @param orderId string Order ID
+     * @param status OrderStatus New status of the order 
+     * @returns Promise<Order|null> the updated order , or null if the order was not found 
      */
     async updateOrderStatus(orderId:string,status:OrderStatus):Promise<Order|null>{
         //Find and update the order by ID

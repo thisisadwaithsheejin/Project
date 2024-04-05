@@ -49,6 +49,7 @@ export class AdminLoggingMiddleware implements NestMiddleware {
       id,
       description, 
     };
+    //Call adminLogSerivce to create log entry
     await this.adminLogService.admincreateLog(AdminlogData);
     next();
   }

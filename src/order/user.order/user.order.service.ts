@@ -9,8 +9,8 @@ export class UserOrderService {
     constructor(@InjectModel(Order.name)private orderModel:Model<Order>){}
 
     /**
-     * Findall orders
-     * @returns Order[]
+     * Retrieves all orders
+     * @returns Promise<Order[]> An array of orders
      */
     async findAll():Promise<Order[]>{
         const orders = await this.orderModel.find()
@@ -18,9 +18,9 @@ export class UserOrderService {
     }
 
     /**
-     * Find order by Id
-     * @param id 
-     * @returns Order
+     * Retrieves an order by its ID
+     * @param id string The ID of the order to retrieve
+     * @returns Promise<Order> the requested order
      */
     async findById(id:string):Promise<Order>{
         //Find order by ID
@@ -29,9 +29,9 @@ export class UserOrderService {
     }
 
     /**
-     * creates an order
-     * @param createOrderDto 
-     * @returns Promise<Order>
+     * creates a new order
+     * @param createOrderDto CreateOrderDto Data for creating a new order 
+     * @returns Promise<Order> The newly created order
      */
     async createOrder(createOrderDto:CreateOrderDto):Promise<Order>{
         const createdOrder = new this.orderModel(createOrderDto);

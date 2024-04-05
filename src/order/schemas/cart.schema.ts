@@ -7,7 +7,7 @@ import { User } from "src/user/schemas/user.schema";
     timestamps: true,
 })
 export class Cart extends Document {
-
+    
         //user ID associated with cart item 
         @Prop({type:SchemaTypes.ObjectId,ref:User.name})
         userId:Types.ObjectId;
@@ -27,7 +27,5 @@ export class Cart extends Document {
         //Price of the product in the cart
         @Prop()
         price:number;
-
 }
-
 export const cartSchema = SchemaFactory.createForClass(Cart);

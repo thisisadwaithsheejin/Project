@@ -9,8 +9,9 @@ export class UserService {
         @InjectModel(User.name)
         private userModel: mongoose.Model<User>,
     ){}
+    
     /**
-     * retrieve all user
+     * Retrieves all users
      * @returns {Promise<User[]>} lisat of all users
      */
     async findAll(): Promise<User[]>{
@@ -29,9 +30,9 @@ export class UserService {
         return res;
     }
     /**
-     * Find user by id
+     * Find user by ID
      * @param id the id of the user to find
-     * @returns the user with the specified ID
+     * @returns {Promise<User>} the user with the specified ID
      */
     async findById(id:string):Promise<User>{
         //Find a user by its ID from the database
@@ -44,8 +45,8 @@ export class UserService {
     }
     /**
      * Update a user by ID
-     * @param id Id of the user to update
-     * @param cid 
+     * @param id string the Id of the user to update
+     * @param cid User The updated user data
      * @returns {Promise<User>} the updated user
      */
     async updateById(id:string,cid:User):Promise<User>{
@@ -57,7 +58,7 @@ export class UserService {
     }    
     /**
      * Delete a user by ID
-     * @param id The ID of the user to delete
+     * @param id string The ID of the user to delete
      * @returns {Promise<User>} The deleted user
      */
     async deleteById(id:string):Promise<User>{

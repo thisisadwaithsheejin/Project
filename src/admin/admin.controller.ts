@@ -13,7 +13,7 @@ export class AdminController {
         ) {}
     /**
      * Retirves all admins . 
-     * @returns Promise<Admin[]>
+     * @returns Promise<Admin[]> All admins
      */
     @Get()
     async getAllAdmin(): Promise<Admin[]> {
@@ -23,19 +23,20 @@ export class AdminController {
     }
     /**
      * creates a new admin
-     * @param admin 
-     * @returns Promise<Admin>
+     * @param admin CreateAdminDto New admin data
+     * @returns Promise<Admin> Newly created admin
      */
     @Post()
     async createAdmin(@Body() admin: CreateAdminDto): Promise<Admin> {
         //Create a new admin
         const createdAdmin=await this.adminService.create(admin);
+        //Log the creation of the admin
         return createdAdmin;
     }
     /**
      * Retrieves a specific admin by ID.
-     * @param id 
-     * @returns Promise<Admin>
+     * @param id string Admin ID
+     * @returns Promise<Admin> Admin with the given ID
      */
     @Get(':id')
     async getAdmin(@Param('id') id: string): Promise<Admin> {
@@ -45,9 +46,9 @@ export class AdminController {
     }
     /**
      * Updates an existing admin by ID
-     * @param id string
-     * @param admin UpdateAdminDto
-     * @returns Promise<Admin>
+     * @param id string Admin ID
+     * @param admin UpdateAdminDto Updated admin data
+     * @returns Promise<Admin> Updated admin
      */
     @Put(':id')
     async updateAdmin(@Param('id') id: string, @Body() admin: UpdateAdminDto): Promise<Admin> {
@@ -57,13 +58,14 @@ export class AdminController {
     }
     /**
      * Deletes an admin by ID 
-     * @param id string
-     * @returns Promise<Admin>
+     * @param id string Admin ID
+     * @returns Promise<Admin> Deleted admin
      */
     @Delete(':id')
     async deleteAdmin(@Param('id') id: string): Promise<Admin> {
         //Delete admin by ID
         const deletedAdmin = await this.adminService.deleteById(id);
+        //Log the deletion of the admin
         return deletedAdmin;
     }    
 }

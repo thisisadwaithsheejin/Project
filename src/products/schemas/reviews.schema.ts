@@ -16,5 +16,4 @@ export class Review extends Document{
     @Prop()
     comment:string;
 }
-
 export const ReviewSchema = SchemaFactory.createForClass(Review);

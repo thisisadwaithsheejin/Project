@@ -7,8 +7,8 @@ export class AdminProductsController {
     constructor(private productService: AdminProductsService) {}
 
     /**
-     * Get all products
-     * @returns Promise<Product[]>
+     * Retrieves all products
+     * @returns Promise<Product[]> An array of products
      */
     @Get()
     async getAllProduct(): Promise<Product[]> {
@@ -17,8 +17,8 @@ export class AdminProductsController {
 
     /**
      * Creates a new product
-     * @param product 
-     * @returns Promise<Product>
+     * @param product Product the product data
+     * @returns Promise<Product> The newly created product
      */
     @Post()
     async createProduct(@Body() product: Product): Promise<Product> {
@@ -26,9 +26,9 @@ export class AdminProductsController {
     }
 
     /**
-     * search for a paticular product based on query 
-     * @param query 
-     * @returns Product[]
+     * search for a paticular product based on query parameters
+     * @param query any Query parameters for searching products
+     * @returns Promies<Product[]> An array of products matching the query
      */
     @Get('search')
     async searchProducts(@Query() query: any): Promise<Product[]> {
@@ -36,9 +36,9 @@ export class AdminProductsController {
     }
     
     /**
-     * Get details of a particular product
-     * @param id 
-     * @returns Promise<Product>
+     * Retrives details of a particular product
+     * @param id string The ID of the product to retrieve
+     * @returns Promise<Product> The requested product
      */
     @Get(':id')
     async getProduct(@Param('id') id: string): Promise<Product> {
@@ -46,10 +46,10 @@ export class AdminProductsController {
     }
 
     /**
-     * Puts a particular change 
-     * @param id 
-     * @param product 
-     * @returns Promise<Product>
+     * Updates a particular change 
+     * @param id string The ID of the product to update
+     * @param product Product The updated product data
+     * @returns Promise<Product> The updated product
      */
     @Put(':id')
     async updateProduct(@Param('id') id: string, @Body() product: Product): Promise<Product> {
@@ -57,8 +57,8 @@ export class AdminProductsController {
     }
 
     /**
-     * delete a particular product
-     * @param id 
+     * Delete a particular product
+     * @param id string The ID of the product to delete
      * @returns Promise<Product>
      */
     @Delete(':id')

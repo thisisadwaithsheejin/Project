@@ -11,8 +11,8 @@ export class CartService {
 
     /**
      * Add an item to cart 
-     * @param CreateCartItemDto 
-     * @returns 
+     * @param CreateCartItemDto CreateCartItemDto Data for creating a new cart item
+     * @returns The newly created cart item
      */
     async addToCart(CreateCartItemDto:CreateCartItemDto):Promise<Cart>{
         const {userId , productId , quantity , price }= CreateCartItemDto;
@@ -23,17 +23,17 @@ export class CartService {
 
     /**
      * Remove an item from the cart
-     * @param cartItemId 
-     * @returns 
+     * @param cartItemId string ID of the cart item to remove
+     * @returns Promise<Cart> the removed cart item
      */
     async removeFromCart(cartItemId:string):Promise<Cart>{
         return this.cartModel.findByIdAndDelete(cartItemId).exec();
     }
 
     /**
-     * update quantity
-     * @param updateCartItemDto 
-     * @returns 
+     * update the quantity of a cart item
+     * @param updateCartItemDto UpdateCartItemDto Data for updating the cart item
+     * @returns Promise<Cart> The updated cart item
      */
     async updateCartItem(updateCartItemDto:UpdateCartItemDto):Promise<Cart>{
         const {cartItemId,quantity}=updateCartItemDto;

@@ -13,7 +13,7 @@ export class UserProductsService {
     
     /**
      * Find all products
-     * @returns All products available
+     * @returns Promise<Product[]>An array of All products available
      */
     async findAll(): Promise<Product[]>{
         const products = await this.productModel.find()
@@ -24,13 +24,14 @@ export class UserProductsService {
      * Find a product by ID
      * @param id The ID of the product to retrieve
      * @returns The product with the specified ID
+     * @throws NotFoundException if the product is not found
      */
     async findById(id:string):Promise<Product>{
-        const cid = await this.productModel.findById(id)
-        if(!cid){
+        const product = await this.productModel.findById(id)
+        if(!product){
             throw new NotFoundException('Product not found')
         }   
-        return cid;
+        return product;
     }
 
     /**
@@ -67,6 +68,7 @@ export class UserProductsService {
      * @param productId productId The ID of the product to add a review to
      * @param review review The review data
      * @returns The updated product with the added review
+     * @throws NotFoundException if the product is not found
      */
     async addReview(productId:string , review:Review):Promise<Product>{
         const product = await this.productModel.findById(productId).exec();
@@ -81,7 +83,7 @@ export class UserProductsService {
 
     /**
      * Calculate the average rating based on the given reviews 
-     * @param reviews the array of reviews
+     * @param reviews Review[] the array of reviews
      * @returns the average rating 
      */
     calculateAverageRating(reviews:Review[]):number{

@@ -21,5 +21,4 @@ export class User{
     @Prop()
     u_password:string;
 }
-
 export const UserSchema = SchemaFactory.createForClass(User)

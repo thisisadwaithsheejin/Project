@@ -48,6 +48,7 @@ export class UserLoggingMiddleware implements NestMiddleware{
             //Description for the method
             description,
         };
+        // Call userLogService to create log entry
         await this.userLogService.UsercreateLog(UserlogData);
         next();
     }

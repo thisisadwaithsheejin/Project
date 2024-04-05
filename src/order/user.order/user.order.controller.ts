@@ -8,8 +8,8 @@ export class UserOrderController {
     constructor(private readonly userOrderService:UserOrderService){}
 
     /**
-     * For getting all orders
-     * @returns Order[]
+     * Endpoint for retrieving all orders
+     * @returns Promise<Order[]> An array of orders
      */
     @Get()
     async getAllOrders(): Promise<Order[]> {
@@ -19,19 +19,19 @@ export class UserOrderController {
     }
     /**
      * Endpoint for creating a new order 
-     * @param createOrderDto 
-     * @returns 
+     * @param createOrderDto CreateOrderDto Data for creating a new order
+     * @returns Promise<any>
      */
     @Post()
     async createOrder(@Body()createOrderDto:CreateOrderDto){
-        // Call to the service to create the order
+        // Call the service to create the order
         return this.userOrderService.createOrder(createOrderDto)
     }
 
     /**
-     * Call a particular order
-     * @param id 
-     * @returns Order
+     * Endpoint for retrieving a particular order
+     * @param id string ID of the order to retrieve
+     * @returns Promise<Order> The requested order
      */
     @Get(':id')
     async getOrder(@Param('id') id: string): Promise<Order> {
