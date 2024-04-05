@@ -9,7 +9,7 @@ export class UserService {
         @InjectModel(User.name)
         private userModel: mongoose.Model<User>,
     ){}
-    
+
     /**
      * Retrieves all users
      * @returns {Promise<User[]>} lisat of all users
@@ -66,4 +66,3 @@ export class UserService {
         return await this.userModel.findByIdAndDelete(id);
     }
 }
-
