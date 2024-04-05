@@ -8,6 +8,13 @@ import { CreateOrderDto } from '../dto/create-order.dto';
 export class UserOrderService {
     constructor(@InjectModel(Order.name)private orderModel:Model<Order>){}
 
+    async findAll():Promise<Order[]>
+    {
+        //Get all order
+        const orders = await this.orderModel.find()
+        return orders;
+    }
+
     /**
      * creates an order
      * @param createOrderDto 
